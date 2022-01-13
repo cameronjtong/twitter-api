@@ -5,11 +5,7 @@ class SessionsController < ApplicationController
       .try(:authenticate, params["session"]["password"])
     if user
       # add login functionality here
-      render json: {
-        status: :created,
-        logged_in: true,
-        user: user,
-      }
+      render json: user, only: [:username], status: :session_created, location: user, logged_in: true
     else
       render json: { status: 401, logged_in: false }
     end
