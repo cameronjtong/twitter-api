@@ -5,10 +5,10 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     @user = users(:cam)
   end
 
-  # test "should get index" do
-  #   get users_url, as: :json
-  #   assert_response :success
-  # end
+  test "should get index" do
+    get users_url, as: :json
+    assert_response :success
+  end
 
   test "should create user" do
     assert_difference("User.count") do

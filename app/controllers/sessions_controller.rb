@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       log_in(user)
       render json: user, except: [:password_digest], location: user, message: "login successful"
     else
-      render json: { status: 401, logged_in: false }
+      render json: { error: "Invalid credentials", logged_in: false }
     end
   end
 

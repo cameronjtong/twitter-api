@@ -7,7 +7,7 @@ class UserSignupTest < ActionDispatch::IntegrationTest
     assert_no_difference "User.count" do
       post users_path, params: new_user_params
     end
-    assert_response :unprocessable_entity
+    assert response.body =~ /errors/
   end
 
   test "valid signup" do
