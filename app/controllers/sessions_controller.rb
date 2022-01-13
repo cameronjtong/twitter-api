@@ -10,4 +10,9 @@ class SessionsController < ApplicationController
       render json: { status: 401, logged_in: false }
     end
   end
+
+  def destroy
+    log_out
+    render json: { message: "Logout was Successful" }
+  end
 end
