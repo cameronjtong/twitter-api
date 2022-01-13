@@ -24,6 +24,7 @@ module Twitter
     # Skip views, helpers and assets when generating a new resource.
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
+    config.middleware.use ActionDispatch::Flash
     config.api_only = true
   end
 end

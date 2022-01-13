@@ -4,8 +4,8 @@ class SessionsController < ApplicationController
       .find_by(username: params["session"]["username"].downcase)
       .try(:authenticate, params["session"]["password"])
     if user
-      user.login
-      render json: user, only: [:username], status: :session_created, location: user, logged_in: true
+      session[:user_id] = user.id
+      render json: user, only: [:username], location: user
     else
       render json: { status: 401, logged_in: false }
     end
