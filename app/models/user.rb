@@ -11,6 +11,7 @@ class User < ApplicationRecord
   def self.new_token
     SecureRandom.urlsafe_base64
   end
+  attr_accessor :login_token
 
   before_save { username.downcase }
   validates :username,
