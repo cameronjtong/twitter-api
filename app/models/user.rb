@@ -33,8 +33,4 @@ class User < ApplicationRecord
   def authenticated?(login_token)
     BCrypt::Password.new(login_digest).is_password?(login_token)
   end
-
-  def logged_in?
-    login_token && login_digest
-  end
 end
