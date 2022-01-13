@@ -16,5 +16,6 @@ class UserSignupTest < ActionDispatch::IntegrationTest
       post users_path, params: new_user_params
     end
     assert_response :created
+    assert is_logged_in?
   end
 end
