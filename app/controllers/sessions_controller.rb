@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
       .try(:authenticate, params["session"]["password"])
     if user
       log_in(user)
-      render json: user, except: [:password_digest], location: user
+      render json: user, except: [:password_digest], location: user, message: "login successful"
     else
       render json: { status: 401, logged_in: false }
     end
