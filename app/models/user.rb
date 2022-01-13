@@ -1,11 +1,12 @@
 class User < ApplicationRecord
-  def self.digest(token)
+  def self.digest(string)
     cost = if ActiveModel::SecurePassword.min_cost
              BCrypt::Engine::MIN_COST
            else
              BCrypt::Engine.cost
            end
-    BCrypt::Password.create(token, cost: cost)
+
+    BCrypt::Password.create(string, cost: cost)
   end
 
   def self.new_token
@@ -20,4 +21,13 @@ class User < ApplicationRecord
             uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
+
+  def login
+    self.login_token = User.new_token
+    update_attribute(:login_digest, User.digest(login_token))
+  end
+
+  def authenticated?(login_token)
+    BCrypt::Password.new(login_digest).is_password?(login_token)
+  end
 end

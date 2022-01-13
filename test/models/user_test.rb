@@ -41,4 +41,22 @@ class UserTest < ActiveSupport::TestCase
 
     assert_not @user.valid?
   end
+
+  test "user login generates a token" do
+    @user.login
+
+    assert_not_nil @user.login_token
+  end
+
+  test "user login generates a database digest" do
+    @user.login
+
+    assert_not_nil @user.login_digest
+  end
+
+  test "login token digests to match the database digest" do
+    @user.login
+
+    assert @user.authenticated?(@user.login_token)
+  end
 end
