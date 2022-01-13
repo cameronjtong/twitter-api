@@ -1,0 +1,7 @@
+cam:
+  username: 'cameronjtong'
+  password_digest: <%= User.digest('foobar') %>
+
+nick:
+  username: 'nicholasaturco'
+  password_digest: <%= User.digest('foobar') %>
