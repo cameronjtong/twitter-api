@@ -59,4 +59,14 @@ class UserTest < ActiveSupport::TestCase
 
     assert @user.authenticated?(@user.login_token)
   end
+
+  test "user is not logged in by default" do
+    assert_not @user.logged_in?
+  end
+
+  test "assert login results in new token and digest" do
+    @user.login
+
+    assert @user.logged_in?
+  end
 end

@@ -32,6 +32,6 @@ class User < ApplicationRecord
   end
 
   def logged_in?
-    login_token.nil? && login_digest.nil?
+    login_token && login_digest
   end
 end
