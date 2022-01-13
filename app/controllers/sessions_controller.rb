@@ -1,10 +1,9 @@
 class SessionsController < ApplicationController
   def create
     user = User
-      .find_by(username: params["session"]["username"])
+      .find_by(username: params["session"]["username"].downcase)
       .try(:authenticate, params["session"]["password"])
     if user
-      session[:user_id] = user.id
       render json: {
         status: :created,
         logged_in: true,
@@ -12,10 +11,7 @@ class SessionsController < ApplicationController
         only: [:username],
       }
     else
-      render json: { status: 401 }
+      render json: { status: 401, logged_in: false }
     end
-  end
-
-  def destroy
   end
 end
