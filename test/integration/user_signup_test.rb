@@ -1,21 +1,20 @@
 require "test_helper"
 
 class UserSignupTest < ActionDispatch::IntegrationTest
-  test 'invalid signup' do
-    new_user_params = {"user": {"username": "", "password": 'foobar', "password_confirmation": 'foobar'}}
+  test "invalid signup" do
+    new_user_params = { user: { username: "", password: "foobar", password_confirmation: "foobar" } }
 
-    assert_no_difference 'User.count' do
-      post users_path, params: new_user_params
-  end
-  assert_response :unprocessable_entity
-  end
-
-  test 'valid signup' do
-    new_user_params = {"user": {"username": "validusername", "password": 'foobar', "password_confirmation": 'foobar'}}
-    assert_difference 'User.count' do
-
+    assert_no_difference "User.count" do
       post users_path, params: new_user_params
     end
-        assert_response :created
+    assert_response :unprocessable_entity
+  end
+
+  test "valid signup" do
+    new_user_params = { user: { username: "validusername", password: "foobar", password_confirmation: "foobar" } }
+    assert_difference "User.count" do
+      post users_path, params: new_user_params
+    end
+    assert_response :created
   end
 end
