@@ -18,10 +18,10 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :created
   end
 
-  # test "should show user" do
-  #   get user_url(@user), as: :json
-  #   assert_response :success
-  # end
+  test "should show user" do
+    get user_url(@user), as: :json
+    assert_response :success
+  end
 
   # test "should update user" do
   #   patch user_url(@user), params: { user: { password_digest: @user.password_digest, username: @user.username } }, as: :json

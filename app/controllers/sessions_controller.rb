@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :logged_in_user, only: [:destroy]
   def create
     user = User
       .find_by(username: params["session"]["username"].downcase)
@@ -14,5 +15,11 @@ class SessionsController < ApplicationController
   def destroy
     log_out
     render json: { message: "Logout was Successful" }
+  end
+
+  private
+
+  def logged_in_user
+    render json: { message: "Please log in." } unless logged_in?
   end
 end
