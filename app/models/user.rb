@@ -10,7 +10,10 @@ class User < ApplicationRecord
   end
 
   def self.new_token
-    SecureRandom.urlsafe_base64
+    loop do
+      random_token = SecureRandom.urlsafe_base64
+      return random_token unless User.exists?(login_digest: User.digest(random_token))
+    end
   end
   attr_accessor :login_token
 
