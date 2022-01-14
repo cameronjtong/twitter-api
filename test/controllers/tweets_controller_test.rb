@@ -25,5 +25,7 @@ class TweetsControllerTest < ActionDispatch::IntegrationTest
     log_in_as(@user)
 
     patch tweet_path(@tweet), params: { tweet: { content: "Lorem tweet" } }
+
+    assert response.body =~ /Lorem/
   end
 end

@@ -18,7 +18,7 @@ class TweetsController < ApplicationController
 
   def update
     if @tweet.update(tweet_params)
-      render json: current_user.to_json.include(:tweets)
+      render json: current_user.to_json(include: :tweets)
     else
       render json: { error: "invalid update" }
     end
