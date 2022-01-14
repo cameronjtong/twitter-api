@@ -1,0 +1,14 @@
+cats:
+  content: 'tweet about cats'
+  created_at: <%= 10.minutes.ago %>
+  user: cam
+
+dogs:
+  content: 'tweet about dogs'
+  created_at: <%= 11.minutes.ago %>
+  user: nick
+
+most_recent:
+  content: 'The batman is gonna be the best movie of 2022'
+  created_at: <%= 2.minutes.ago %>
+  user: cam

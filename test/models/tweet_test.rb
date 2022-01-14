@@ -23,4 +23,8 @@ class TweetTest < ActiveSupport::TestCase
 
     assert_not @tweet.valid?
   end
+
+  test 'display most recent first' do
+    assert_equal tweets(:most_recent), Tweet.first
+  end
 end
