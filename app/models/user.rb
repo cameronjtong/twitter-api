@@ -23,7 +23,7 @@ class User < ApplicationRecord
             length: { maximum: 50 },
             uniqueness: { case_sensitive: false }
   has_secure_password
-  has_many :tweets
+  has_many :tweets, dependent: :destroy
   validates :password, presence: true, length: { minimum: 6 }
 
   def login

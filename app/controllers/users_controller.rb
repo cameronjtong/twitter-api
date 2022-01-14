@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    render json: @user
+    render json: @user.to_json(include: :tweets)
   end
 
   def create
