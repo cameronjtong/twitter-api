@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
   before_action :set_conversation
   def index
     messages = @conversation.messages
-    render json: messages
+    render json: {messages: messages}
   end
 
   def create
@@ -12,6 +12,7 @@ class MessagesController < ApplicationController
   else
     render json: {error: "invalid message"}
   end
+end
 
   private
 
