@@ -20,4 +20,10 @@ class TweetsControllerTest < ActionDispatch::IntegrationTest
       post tweets_path, params: { tweet: { content: "Lorem tweet" } }
     end
   end
+
+  test "updates tweets" do
+    log_in_as(@user)
+
+    patch tweet_path(@tweet), params: { tweet: { content: "Lorem tweet" } }
+  end
 end
