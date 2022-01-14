@@ -2,6 +2,7 @@ require "test_helper"
 
 class TweetsControllerTest < ActionDispatch::IntegrationTest
   def setup
+    @user = users(:cam)
     @tweet = tweets(:cats)
   end
 
@@ -10,5 +11,13 @@ class TweetsControllerTest < ActionDispatch::IntegrationTest
       delete tweet_path(@tweet)
     end
     assert response.body =~ /error/
+  end
+
+  test "creates a valid tweet" do
+    log_in_as(@user)
+
+    assert_difference "Tweet.count" do
+      post tweets_path, params: { tweet: { content: "Lorem tweet" } }
+    end
   end
 end

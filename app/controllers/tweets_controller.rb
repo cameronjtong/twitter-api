@@ -3,9 +3,9 @@ class TweetsController < ApplicationController
   before_action :set_tweet, only: %i[destroy update]
 
   def create
-    tweet = current_user.tweets.build(micropost_params)
+    tweet = current_user.tweets.build(tweet_params)
     if tweet.save
-      render json: current_user.to_json.include(:tweets)
+      render json: current_user.to_json(include: :tweets)
     else
       render json: { error: "invalid tweet" }
     end
@@ -17,6 +17,11 @@ class TweetsController < ApplicationController
   end
 
   def update
+    if @tweet.update(tweet_params)
+      render json: current_user.to_json.include(:tweets)
+    else
+      render json: { error: "invalid update" }
+    end
   end
 
   private
@@ -28,5 +33,9 @@ class TweetsController < ApplicationController
   def set_tweet
     @tweet = current_user.tweets.find_by(id: params[:id])
     render json: { error: "found no tweet" } if @tweet.nil?
+  end
+
+  def tweet_params
+    params.require(:tweet).permit(:content)
   end
 end
