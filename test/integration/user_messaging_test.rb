@@ -38,4 +38,5 @@ class UserMessagingTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert response.body =~ /Test message/
   end
+
 end
