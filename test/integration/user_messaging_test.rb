@@ -11,7 +11,6 @@ class UserMessagingTest < ActionDispatch::IntegrationTest
     log_in_as(@user)
 
     post conversations_path, params: { recipient_id: @other_user.id, sender_id: @user.id }
-
     assert response.body =~ /conversation/
   end
 
@@ -24,6 +23,19 @@ class UserMessagingTest < ActionDispatch::IntegrationTest
   test "user can create a message" do
     log_in_as(@user)
 
-    #   post conversations_messages_path(@conversation), params: { message: { body: "Message", user_id: @user.id } }
+    post conversation_messages_path(@conversation), params: {message: {body: 'Test message', user_id: @user.id}}
+
+    assert_response :success
+    assert response.body =~ /Test message/
+  end
+
+  test 'creation of message then viewing on the index page' do
+     log_in_as(@user)
+
+    post conversation_messages_path(@conversation), params: {message: {body: 'Test message', user_id: @user.id}}
+    get conversation_messages_path(@conversation)
+
+    assert_response :success
+    assert response.body =~ /Test message/
   end
 end

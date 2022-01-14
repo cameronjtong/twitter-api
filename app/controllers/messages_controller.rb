@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
   def create
     message = @conversation.messages.new(message_params)
    if message.save
-    render json: @conversation
+    render json: @conversation.to_json(include: :messages)
   else
     render json: {error: "invalid message"}
   end
