@@ -16,3 +16,17 @@ module ActiveSupport
     end
   end
 end
+
+module ActionDispatch
+  class IntegrationTest
+    def log_in_as(user, password: "foobar")
+      post login_path,
+           params: {
+             session: {
+               username: user.username,
+               password: password,
+             },
+           }
+    end
+  end
+end

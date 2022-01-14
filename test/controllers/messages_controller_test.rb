@@ -1,8 +1,11 @@
 require "test_helper"
 
 class MessagesControllerTest < ActionDispatch::IntegrationTest
+  # def setup
+  #   @conversation = conversations(:first)
+  # end
   # test "should get index" do
-  #   get messages_index_url
+  #   get conversations_messages_path(@conversation)
   #   assert_response :success
   # end
 
