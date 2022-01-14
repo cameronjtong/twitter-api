@@ -9,5 +9,7 @@ class UserMessagingTest < ActionDispatch::IntegrationTest
     log_in_as(@user)
 
     post conversations_path, params: { recipient_id: @other_user.id, sender_id: @user.id }
+
+    assert response.body =~ /conversation/
   end
 end

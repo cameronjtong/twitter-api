@@ -14,7 +14,7 @@ class ConversationsController < ApplicationController
                    else
                      Conversation.create!(conversation_params)
                    end
-    render json: conversation
+    render json: { conversation: conversation }
   end
 
   private
