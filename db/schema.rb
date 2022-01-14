@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_14_020732) do
-
+ActiveRecord::Schema.define(version: 20_220_114_020_732) do
   create_table "conversations", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "recipient_id"
@@ -34,7 +33,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_020732) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id", "created_at"], name: "index_tweets_on_user_id_and_created_at"
+    t.index %w[user_id created_at], name: "index_tweets_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_tweets_on_user_id"
   end
 

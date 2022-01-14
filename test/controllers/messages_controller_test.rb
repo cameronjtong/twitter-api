@@ -13,9 +13,8 @@ class MessagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get create" do
-    post conversation_messages_path(@conversation), params: {message: {body: 'Test message', user_id: @conversation.sender_id}}
+    post conversation_messages_path(@conversation), params: { message: { body: "Test message", user_id: @conversation.sender_id } }
 
     assert_response :success
   end
-
 end

@@ -3,28 +3,28 @@ require "test_helper"
 class TweetTest < ActiveSupport::TestCase
   def setup
     @user = users(:cam)
-    @tweet = @user.tweets.build(content: 'Lorem text')
+    @tweet = @user.tweets.build(content: "Lorem text")
   end
 
-  test 'tweets must have content' do
+  test "tweets must have content" do
     @tweet.content = ""
 
     assert_not @tweet.valid?
   end
 
-  test 'tweets must be less than 140 characters' do
-    @tweet.content = 'a'*141
+  test "tweets must be less than 140 characters" do
+    @tweet.content = "a" * 141
 
     assert_not @tweet.valid?
   end
 
-  test 'requires a user id' do
+  test "requires a user id" do
     @tweet.user_id = nil
 
     assert_not @tweet.valid?
   end
 
-  test 'display most recent first' do
+  test "display most recent first" do
     assert_equal tweets(:most_recent), Tweet.first
   end
 end
